@@ -1,6 +1,6 @@
 # tensorflow-tutorial
 tensorflow tutorial manual for my labtop.
-([Reference](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/get_started/os_setup.html)) 
+([Reference1](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/get_started/os_setup.html) [Reference2](https://gist.github.com/haje01/202ac276bace4b25dd3f)) 
 
 1. Start a "Docker Quickstart Terminal". 
 
