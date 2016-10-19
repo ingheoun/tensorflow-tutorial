@@ -36,7 +36,7 @@ feed_dict을 이용해서 채워주지 않으면 에러가 난다.
 
 예시
 
-``` 
+``` python
 x = tf.placeholder(tf.float32, shape=(1024, 1024))
 y = tf.matmul(x, x)
 
