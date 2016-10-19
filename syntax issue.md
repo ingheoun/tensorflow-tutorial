@@ -20,3 +20,22 @@ Initialization은 `variable`을 사용할 떄 필수적으로 해주어야 하�
 식으로 한번에 초기화 가능
 
 `tf.initialize_variables(var_list, name='init')`, 또 `tf.initialize_local_variables()` 식으로도 가능
+
+
+### Placeholder
+
+빈 tensor, 나중에 채워질 공간을 배정하는 변수라고 생각하면 될 듯
+feed_dict을 이용해서 채워주지 않으면 에러가 난다.
+`tf.placeholder(dtype, shape=None, name=None)` 
+`x = tf.placeholder(tf.float32, shape=(1024, 1024))` 식으로 사용
+`x = tf.placeholder(tf.float32, shape=(None, 1024))` 식으로도 사용 가능, 이경우 None에 배정되는 숫자는 tensor를 지정할때 정해짐.
+
+예시
+`x = tf.placeholder(tf.float32, shape=(1024, 1024))
+y = tf.matmul(x, x)
+
+with tf.Session() as sess:
+  print(sess.run(y))  # ERROR: will fail because x was not fed.
+
+  rand_array = np.random.rand(1024, 1024)
+  print(sess.run(y, feed_dict={x: rand_array}))  # Will succeed.`
