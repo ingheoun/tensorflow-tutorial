@@ -12,6 +12,7 @@ tensorflow tutorial manual for my labtop.
 	> '~~winpty~~' is not necessary.
 	
 	> ~~b.gcr.io/tensorflow/tensorflow-full~~ is not contaion some examples (ex. mnist)
+	
 	> If you do not add ':latest-devel', server problem may occur.
 3. 
 
