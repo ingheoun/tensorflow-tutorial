@@ -71,3 +71,23 @@ with tf.Session() as sess:
   print(sess.run(y, feed_dict={x: rand_array}))  # Will succeed. 
 ```
   
+### Optimizer
+
+예시:
+
+```python
+# Create an optimizer with the desired parameters.
+opt = GradientDescentOptimizer(learning_rate=0.1)
+# Add Ops to the graph to minimize a cost by updating a list of variables.
+# "cost" is a Tensor, and the list of variables contains tf.Variable
+# objects.
+opt_op = opt.minimize(cost, var_list=<list of variables>)
+In the training program you will just have to run the returned Op.
+
+# Execute opt_op to do one step of training:
+opt_op.run()
+```
+
+어떤 식으로 update가 일어나는가. -> 주어진 `Optimizer`에 관계된 모든 `variable들을 update 하는 듯.
+
+그게 싫다면  `opt.minimize(cost, var_list=<list of variables>)` 에서 update를 원하는 `variable들을 지정할 수 있다.
