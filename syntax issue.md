@@ -88,6 +88,8 @@ In the training program you will just have to run the returned Op.
 opt_op.run()
 ```
 
-어떤 식으로 update가 일어나는가. -> 주어진 `Optimizer`에 관계된 모든 `variable들을 update 하는 듯.
+Q. 어떤 식으로 update가 일어나는가. 
 
-그게 싫다면  `opt.minimize(cost, var_list=<list of variables>)` 에서 update를 원하는 `variable들을 지정할 수 있다.
+A.주어진 `Optimizer`에 관계된 모든 `variable`들을 update 하는 듯.
+
+그게 싫다면  `opt.minimize(cost, var_list=<list of variables>)` 에서 update를 원하는 `variable`들을 지정할 수 있다.
