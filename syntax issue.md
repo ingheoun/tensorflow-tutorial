@@ -6,6 +6,30 @@
 
 즉, 세션 실행전에 전체 그래프 디자인이 되어있지 않아도 됨.
 
+`Tensor.eval()`과 `Operation.run()` 메서드를 `Session` 객체의 전달없이 사용 가능.
+
+예시:
+  
+``` python
+sess = tf.InteractiveSession()
+a = tf.constant(5.0)
+b = tf.constant(6.0)
+c = a * b
+# 'sess'의 전달없이도 'c.eval()'를 실행할 수 있습니다.
+print(c.eval())
+sess.close()
+```
+
+`Session`과의 비교:
+
+``` python
+a = tf.constant(5.0)
+b = tf.constant(6.0)
+c = a * b
+with tf.Session():
+  # 'c.eval()'을 여기에서도 사용할 수 있습니다.
+  print(c.eval())
+  ```
 
 ### Initialization
 
