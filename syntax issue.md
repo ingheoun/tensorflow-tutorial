@@ -93,3 +93,51 @@ Q. 어떤 식으로 update가 일어나는가.
 A.주어진 `Optimizer`에 관계된 모든 `variable`들을 update 하는 듯.
 
 그게 싫다면  `opt.minimize(cost, var_list=<list of variables>)` 에서 update를 원하는 `variable`들을 지정할 수 있다.
+
+
+## Tensor Board
+
+### Tensorboard
+`tensorboard --logdir=path/to/log-directory` 로 실행, 이후 `http://localhost:6006` 으로 접속하여 텐서보드 확인 가능.
+
+(내 노트북 :win7/64bit/docker/cpu 환경에서 tensorboard 커맨드를 입력 후 뜨는 ip가 nginx가 제공하는 서버 ip와 다른데 무시하고 nginx ip:6006으로 접속이 가능)
+
+### Summary
+
+`tf.scalar_summary(%name, %var_name)` 식으로 summary할  `variable`들을 지정
+
+
+``` python
+summary = tf.merge_all_summaries()
+summary_writer = tf.train.SummaryWriter(%log_dir, sess.graph)
+```
+식으로 node 생성 후 training중에
+
+``` python
+summary_str = sess.run(summary, feed_dict=%feed_dict)
+summary_writer.add_summary(summary_str, %step)
+summary_writer.flush() 	#즉시 summary 저장
+```
+식으로 저장
+
+### Name_scope
+
+Tensorboard에서 graph를 한 눈에 알아보기 쉽게 하기 위해, 여러가지 ops를 간략화해서 grouping하기 위한 함수
+
+예시:
+``` python
+import tensorflow as tf
+
+with tf.name_scope('hidden') as scope:
+  a = tf.constant(5, name='alpha')
+  W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name='weights')
+  b = tf.Variable(tf.zeros([1]), name='biases')
+``` 
+혹은 
+
+``` python
+with tf.Graph().as_default() as g:
+  with g.name_scope("nested") as scope:
+    nested_c = tf.constant(10.0, name="c")
+    assert nested_c.op.name == "nested/c"
+```
