@@ -23,6 +23,8 @@ base.py: module of functions
 
 Crop:
 
+You can see the numeric words are clustered.
+
 ![word2vec_PCA_crop](Lookup/word2vec_Lookup_crop.png)
 
-You can see the numeric words are clustered.
+
