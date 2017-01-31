@@ -16,3 +16,7 @@ Reference of File IO and visualization:
 word2vec.py: main python file for run. Implement the word2vec with NEG-128 use 10^-5 subsampling.
 
 base.py: module of functions
+
+### Result Visualization
+
+![word2vec_PCA](word2vec_Lookup_5200.png)
