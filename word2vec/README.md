@@ -12,5 +12,7 @@ Reference of File IO and visualization:
 (논문에서 제공한 말뭉치 주소가 현재 접속이 되지않아 database와 PCA 시각화 함수를 TensorFlow tutorial을 참조함)
 
 ### File
+
 word2vec.py: main python file for run. Implement the word2vec with NEG-128 use 10^-5 subsampling.
+
 base.py: module of functions
