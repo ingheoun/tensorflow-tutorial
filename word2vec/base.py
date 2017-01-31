@@ -84,7 +84,7 @@ def next_batch(batch_size, train_set, BOW_size):
 	return x, y_
 
 def next_batch_in_index(batch_size, train_set, BOW_size):
-	"""Return a batch_size batch tuple from input train_set"""
+	"""Return a batch_size index array from input train_set"""
 	global batch_index
 	batch_tuple = []
 	if (batch_index + batch_size) > len(train_set):
