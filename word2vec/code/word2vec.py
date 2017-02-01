@@ -10,11 +10,11 @@ url = 'http://mattmahoney.net/dc/'
 filename = 'text8.zip'
 expected_bytes = 31344016
 t_sub = 10**-5				# Subsampling threshold 
-context_size = 2
-BOW_size = 5000
+context_size = 3
+BOW_size = 3000
 hidden_node_size = 128
 batch_size = 128
-k_neg = 128									# Negative sample size
+k_neg = 20									# Negative sample size
 lr = 0.01
 epoch = 400000
 plot_only = 500				# < BOW_size
@@ -73,7 +73,8 @@ word_neg = tf.placeholder(tf.int32, shape=[batch_size, k_neg])
 # make weights
 W_in = tf.Variable(tf.random_uniform([BOW_size, hidden_node_size], -1.0, 1.0))		#(BOW_size, hidden_node_size,)
 W_out = tf.Variable(tf.random_uniform([BOW_size, hidden_node_size], -1.0, 1.0))		#(BOW_size, hidden_node_size,)
-
+# W is a matrix of a_(m,n) = v_m * v'_n
+# W = tf.matmul(a = W_in, b = W_out, transpose_b = True)
 loss = tf.constant(0.0)
 average_loss = 0
 # Initialize the variables
@@ -92,7 +93,16 @@ loss_data = tf.log(tf.sigmoid(data))
 loss_noise = tf.log(tf.sigmoid(-noise))
 
 loss = tf.reduce_sum(loss_data) + tf.reduce_sum(loss_noise)
+
+# for i in range(batch_size):
+# 	data = tf.reduce_sum(tf.mul(W_in[word_in[i]], W_out[word_out[i]]))
+# 	loss += tf.log(tf.sigmoid(data))
+# 	for j in range(k_neg):
+# 		noise =  tf.reduce_sum(tf.mul(W_in[word_in[i]], W_out[word_neg[i][j]]))
+# 		loss += tf.log(tf.sigmoid(-noise))
+
 train_step = tf.train.GradientDescentOptimizer(lr).minimize(-loss)
+
 saver = tf.train.Saver()
 print ("Train start!")
 
@@ -102,12 +112,12 @@ for i in range(epoch):
 	train_neg = np.array([base.choose_NEG_sample(P_n) for _ in range(batch_size * k_neg)]).reshape(batch_size, k_neg)
 	_, loss_val = sess.run([train_step, loss], feed_dict={word_in: train_input, word_out: labels, word_neg: train_neg})
 	average_loss += loss_val
-	if i%200 == 0:
+	if i%2 == 0:
 		print("Epoch: ", i)
-		average_loss /= 200
+		average_loss /= 2
 		print("Average loss: ", average_loss)
 		average_loss = 0
-	if i%2000 == 0:
+	if i%200 == 0:
 		#save the model
 		saver.save(sess, 'Lookup/my-model', global_step=i)
 		
