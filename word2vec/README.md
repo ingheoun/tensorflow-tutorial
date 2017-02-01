@@ -23,8 +23,25 @@ base.py: module of functions
 
 Crop:
 
-You can see the numeric words are clustered.
+Left to right order
 
-![word2vec_PCA_crop](Lookup/word2vec_Lookup_crop.png)
+You can see the language words are clustered. (language/languages/japanese/chinese/english )
+
+![word2vec_PCA_crop](Lookup/word2vec_Lookup_cr0.png)
+
+
+You can see the month words are clustered. (january/march/july/december)
+
+![word2vec_PCA_crop](Lookup/word2vec_Lookup_cr1.png)
+
+
+You can see the meaningless one alphabet words are clustered. (l/k/w/j/r/h/i/m/v/p/g/t/c/n/y/x/f/e)
+
+![word2vec_PCA_crop](Lookup/word2vec_Lookup_cr2.png)
+
+
+You can see the numeric words are clustered. (zero/one/two/three/four/five/six/seven/eight/nine/first)
+
+![word2vec_PCA_crop](Lookup/word2vec_Lookup_cr3.png)
 
 
